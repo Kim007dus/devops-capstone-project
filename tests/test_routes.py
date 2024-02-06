@@ -28,7 +28,6 @@ HTTPS_ENVIRON = {'wsgi.url_scheme': 'https'}
 class TestAccountService(TestCase):
     """Account Service Tests"""
 
-
     @classmethod
     def setUpClass(cls):
         """Run once before all tests"""
@@ -176,13 +175,13 @@ class TestAccountService(TestCase):
         resp = self.client.delete(BASE_URL)
         self.assertEqual(resp.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
     
-    
+
     ######################################################################
     #  SECURITY
     ######################################################################
-
     def test_security_headers(self):
         """It should return security headers"""
+
         response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         headers = {
